@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Us Improve — The Rules Official</title>
+  <meta name="description" content="Share your feedback and feature requests for The Rules Official. Every suggestion is read by our team." />
+  <link rel="canonical" href="https://therulesofficial.com/suggestions.html" />
+  <meta name="robots" content="index, follow" />
+  <style>
+    :root {
+      --bg: #000000;
+      --card: #1A2620;
+      --card-border: #2A3D30;
+      --surface: #0D1510;
+      --green: #4CAF6A;
+      --green-muted: #3A8A54;
+      --text: #E8EBE9;
+      --text-secondary: #8A9B8F;
+      --text-faint: #5A6B5F;
+      --divider: #2A3D30;
+      --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .nav a {
+      color: var(--green);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .nav a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .page-header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--divider);
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .page-header h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .page-header .subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .feedback-body {
+      padding: 48px 0 80px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.3s forwards;
+    }
+
+    .feedback-body .intro {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    /* ─── FORM ─── */
+    .feedback-form {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feedback-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+    }
+
+    .form-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .form-group .label-hint {
+      font-size: 12px;
+      color: var(--text-faint);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .form-group select,
+    .form-group textarea,
+    .form-group input[type="email"] {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .form-group select:focus,
+    .form-group textarea:focus,
+    .form-group input[type="email"]:focus {
+      border-color: var(--green);
+    }
+
+    .form-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%238A9B8F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    .form-group select option {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.6;
+    }
+
+    /* ─── RADIO GROUP ─── */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .radio-option:hover {
+      border-color: var(--green-muted);
+    }
+
+    .radio-option input[type="radio"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--card-border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .radio-option input[type="radio"]:checked {
+      border-color: var(--green);
+    }
+
+    .radio-option input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .radio-option input[type="radio"]:checked ~ .radio-label {
+      color: var(--text);
+    }
+
+    .radio-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    /* ─── SUBMIT ─── */
+    .form-actions {
+      margin-top: 32px;
+    }
+
+    .btn-submit {
+      background: var(--green);
+      color: #000;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+      width: 100%;
+    }
+
+    .btn-submit:hover { background: #5DBF7A; transform: translateY(-2px); }
+
+    /* ─── CONFIRMATION ─── */
+    .confirmation {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .confirmation.show {
+      display: block;
+    }
+
+    .confirmation .check-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      background: rgba(76, 175, 106, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .confirmation .check-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .confirmation h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .confirmation p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer-legal {
+      text-align: center;
+      padding: 40px 32px 48px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .footer-legal p {
+      font-size: 11px;
+      color: var(--text-faint);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 8px;
+    }
+
+    .footer-legal a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .footer-legal a:hover { color: var(--green); border-color: var(--green); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .page-header { padding: 48px 0 36px; }
+      .feedback-body { padding: 36px 0 60px; }
+      .feedback-form { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <div class="container">
+      <a href="index.html">&larr; The Rules Official</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Help Us Improve</h1>
+      <p class="subtitle">Your feedback shapes The Rules Official</p>
+    </div>
+
+    <div class="feedback-body">
+      <p class="intro">We build this app for golfers, not in a vacuum. Every suggestion is read by our team. Whether it's a feature you wish existed, a rule scenario we haven't covered, or something that could work better -- we want to hear it.</p>
+
+      <div class="feedback-form" id="formCard">
+        <form id="feedbackForm" action="https://formspree.io/f/xnjgzqvr" method="POST">
+
+          <div class="form-group">
+            <label for="area">What area is this about?</label>
+            <select id="area" name="area" required>
+              <option value="" disabled selected>Select a category</option>
+              <option value="Rulings & Rules">Rulings & Rules</option>
+              <option value="AI Chat">AI Chat</option>
+              <option value="App Design">App Design</option>
+              <option value="New Feature Idea">New Feature Idea</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="suggestion">Your suggestion</label>
+            <textarea id="suggestion" name="suggestion" placeholder="Tell us what you'd like to see..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>How important is this to you?</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="importance" value="Nice to have" required />
+                <span class="radio-label">Nice to have</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="importance" value="Would improve my experience" />
+                <span class="radio-label">Would improve my experience</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="importance" value="I really need this" />
+                <span class="radio-label">I really need this</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email <span class="label-hint">(optional -- in case we'd like to follow up)</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Send Feedback</button>
+          </div>
+
+        </form>
+
+        <div class="confirmation" id="confirmation">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+          </div>
+          <h3>Thank you</h3>
+          <p>Your feedback has been received. We appreciate you helping us make The Rules Official better for every golfer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <p>
+      <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="terms.html">Terms of Service</a>
+    </p>
+    <p>&copy; 2026 Centrifical, Inc. All rights reserved.</p>
+  </div>
+
+  <script>
+    var form = document.getElementById('feedbackForm');
+    var confirmation = document.getElementById('confirmation');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          form.style.display = 'none';
+          confirmation.classList.add('show');
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(function() {
+        alert('Something went wrong. Please try again.');
+      });
+    });
+  </script>
+
+</body>
+</html>
