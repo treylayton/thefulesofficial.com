@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Rules Official — Tour-Level Golf Rulings on Your Phone</title>
+  <meta name="description" content="Instant, accurate golf rulings on the course. Guided decision trees walk you through the correct ruling step by step. Works offline. No data collected. Try free for 7 days." />
+  <meta name="keywords" content="golf rules, golf rulings, rules of golf, golf app, USGA rules, golf penalty, golf relief, rules official, golf decision tree" />
+  <link rel="canonical" href="https://therulesofficial.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Rules Official — Tour-Level Golf Rulings" />
+  <meta property="og:description" content="Your pocket rules official for every round. Instant, accurate rulings — no signal required. Works offline on every iPhone." />
+  <meta property="og:url" content="https://therulesofficial.com/" />
+  <meta property="og:site_name" content="The Rules Official" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@therulesofficial" />
+  <meta name="twitter:title" content="The Rules Official — Tour-Level Golf Rulings" />
+  <meta name="twitter:description" content="Your pocket rules official for every round. Instant, accurate rulings — no signal required." />
+  <style>
+    :root {
+      --bg: #000000;
+      --card: #1A2620;
+      --card-border: #2A3D30;
+      --surface: #0D1510;
+      --green: #4CAF6A;
+      --green-muted: #3A8A54;
+      --green-dim: rgba(76, 175, 106, 0.12);
+      --text: #E8EBE9;
+      --text-secondary: #8A9B8F;
+      --text-faint: #5A6B5F;
+      --gold: #D4AA3C;
+      --divider: #2A3D30;
+      --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 40px 90px;
+      text-align: center;
+      background: var(--bg);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(76,175,106,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+    }
+
+    /* Brand Mark */
+    .brand-mark {
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .brand-flag {
+      display: block;
+      margin: 0 auto 8px;
+      width: 48px;
+      height: 56px;
+      filter: drop-shadow(0 0 20px rgba(76,175,106,0.3));
+    }
+
+    .brand-flag svg {
+      width: 48px;
+      height: 56px;
+    }
+
+    .brand-the-rules {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .brand-official {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-top: -2px;
+    }
+
+    .brand-rule {
+      width: 80px;
+      height: 2px;
+      background: var(--green);
+      margin: 16px auto;
+    }
+
+    .hero-tagline {
+      font-size: clamp(16px, 2.5vw, 20px);
+      font-weight: 300;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.3s forwards;
+    }
+
+    .hero-lede {
+      max-width: 540px;
+      margin: 0 auto 48px;
+      font-size: clamp(15px, 2vw, 17px);
+      color: var(--text-secondary);
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #000;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: #5DBF7A; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 13px 36px;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--divider);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .section-title em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    p {
+      font-size: clamp(15px, 1.8vw, 17px);
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* ─── PULL QUOTE ─── */
+    .pull-quote {
+      border-left: 2px solid var(--green);
+      padding: 8px 0 8px 28px;
+      margin: 36px 0;
+    }
+
+    .pull-quote p {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-style: italic;
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ─── SCENARIO BLOCK ─── */
+    .scenario {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      margin: 36px 0 0;
+    }
+
+    .scenario::before {
+      content: '\201C';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 180px;
+      color: rgba(76,175,106,0.06);
+      line-height: 1;
+      pointer-events: none;
+      font-family: Georgia, serif;
+    }
+
+    .scenario p { color: var(--text-secondary); font-size: 15px; position: relative; }
+
+    .scenario .scenario-lines { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+
+    .scenario .scenario-line {
+      font-size: clamp(17px, 2.5vw, 22px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      position: relative;
+    }
+
+    .scenario .scenario-line span { color: var(--green); }
+
+    .scenario-resolution {
+      border-top: 1px solid var(--card-border);
+      padding-top: 20px;
+      margin-top: 4px;
+    }
+
+    /* ─── STEPS ─── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 36px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 20px;
+      bottom: 20px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--green-muted), transparent);
+    }
+
+    .step { display: flex; gap: 24px; padding: 20px 0; align-items: flex-start; }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--green-muted);
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .step-body p { margin: 0; font-size: 15px; }
+
+    /* ─── TAP PLAY ─── */
+    .tap-play {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 48px 0 0;
+      padding: 32px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      position: relative;
+    }
+
+    .tap-word {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .tap-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* ─── FEATURES GRID ─── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .feature-item {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px 28px 24px;
+      position: relative;
+    }
+
+    .feature-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(76, 175, 106, 0.12);
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .feature-item p { font-size: 13.5px; color: var(--text-secondary); margin: 0; line-height: 1.6; }
+
+    /* ─── PRICING CARD ─── */
+    .pricing-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      color: var(--text);
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+    }
+
+    .trial-badge {
+      display: inline-block;
+      border: 1px solid var(--green);
+      border-radius: 10px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      margin-bottom: 32px;
+    }
+
+    .price-amount {
+      font-size: clamp(52px, 9vw, 84px);
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .price-amount sup {
+      font-size: 0.45em;
+      font-weight: 600;
+      vertical-align: super;
+      color: var(--green);
+    }
+
+    .price-period {
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .price-context {
+      font-style: italic;
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .pricing-cta {
+      display: inline-block;
+      background: var(--green);
+      color: #000;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 48px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .pricing-cta:hover { background: #5DBF7A; transform: translateY(-2px); }
+
+    .pricing-includes {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .pricing-includes span {
+      font-size: 12px;
+      color: var(--text-faint);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── PRIVACY SECTION ─── */
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .privacy-item {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .privacy-icon {
+      display: block;
+      margin: 0 auto 12px;
+      width: 32px;
+      height: 32px;
+    }
+
+    .privacy-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .privacy-item strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .privacy-item p { font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+    /* ─── FOOTER ─── */
+    .footer-close {
+      text-align: center;
+      padding: 72px 32px 24px;
+      background: var(--bg);
+    }
+
+    .footer-close .footer-quote {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      max-width: 500px;
+      margin: 0 auto 8px;
+    }
+
+    .footer-close .footer-answer {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .footer-legal {
+      text-align: center;
+      padding: 40px 32px 48px;
+      background: var(--bg);
+      border-top: 1px solid var(--divider);
+    }
+
+    .footer-legal p {
+      font-size: 11px;
+      color: var(--text-faint);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 8px;
+    }
+
+    .footer-legal a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .footer-legal a:hover { color: var(--green); border-color: var(--green); }
+
+    /* ─── FOUNDER QUOTE ─── */
+    .founder-quote {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-top: 36px;
+      position: relative;
+    }
+
+    .founder-quote::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 40px;
+      right: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--green-muted), transparent);
+    }
+
+    .founder-quote blockquote {
+      font-size: clamp(16px, 2.2vw, 19px);
+      font-style: italic;
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .founder-sig {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .founder-sig .sig-name {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(24px, 4vw, 32px);
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.2;
+      position: relative;
+    }
+
+    .founder-sig .sig-line {
+      width: 60px;
+      height: 1px;
+      background: var(--green);
+      margin: 12px 0;
+    }
+
+    .founder-sig .sig-title {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 600px) {
+      .founder-quote { padding: 36px 24px; }
+    }
+
+    /* ─── APP STORE TEXT ─── */
+    .appstore-section {
+      background: var(--surface);
+      border-top: 1px solid var(--divider);
+      padding: 60px 0;
+    }
+
+    .appstore-section .section-eyebrow { color: var(--text-faint); }
+
+    .appstore-block {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 32px;
+      margin-top: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    }
+
+    .appstore-block h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 12px;
+    }
+
+    .appstore-block pre {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .appstore-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .appstore-meta-item {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    .appstore-meta-item label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 4px;
+    }
+
+    .appstore-meta-item span {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .hero { padding: 72px 24px 64px; }
+      .container { padding: 0 20px; }
+      section { padding: 56px 0; }
+      .pricing-card { padding: 40px 24px; }
+      .scenario { padding: 36px 24px; }
+      .tap-play { padding: 24px 16px; gap: 10px; }
+      .privacy-grid { grid-template-columns: 1fr; }
+      .appstore-meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="brand-mark">
+      <span class="brand-flag"><svg viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="4" x2="12" y2="54" stroke="#4CAF6A" stroke-width="2.5" stroke-linecap="round"/><path d="M12 4 L38 4 Q40 4 40 6 L40 22 Q40 24 38 24 L12 24 Z" fill="#4CAF6A"/><circle cx="12" cy="54" r="2.5" fill="#4CAF6A"/></svg></span>
+      <div class="brand-the-rules">THE RULES</div>
+      <div class="brand-official">OFFICIAL</div>
+    </div>
+    <div class="brand-rule"></div>
+    <p class="hero-tagline">Tour-level rulings. Every round.</p>
+    <p class="hero-lede">Your pocket rules official for every round. Instant, accurate rulings -- no&nbsp;signal&nbsp;required.</p>
+    <div class="cta-group">
+      <a href="#" class="btn-primary">Start Free Trial</a>
+      <a href="#features" class="btn-secondary">See Features</a>
+    </div>
+  </div>
+
+  <!-- ═══ THE PROBLEM ═══ -->
+  <section>
+    <div class="container">
+      <p class="section-eyebrow">The Problem</p>
+      <h2 class="section-title">Every Golfer <em>Knows This</em></h2>
+
+      <div class="scenario">
+        <div class="scenario-lines">
+          <div class="scenario-line">A ball moves.</div>
+          <div class="scenario-line">A drop is required.</div>
+          <div class="scenario-line"><span>Someone thinks they know the rule.</span></div>
+        </div>
+        <div class="scenario-resolution">
+          <p>The group debates. Time passes. Play resumes with doubt -- and someone walks off the green not knowing whether they scored correctly.</p>
+        </div>
+      </div>
+
+      <div class="pull-quote" style="margin-top: 40px;">
+        <p>You've spent thousands on green fees, equipment, and lessons. You shouldn't lose a stroke -- or a match -- because of a disputed ruling.</p>
+      </div>
+
+      <p>Tour players don't guess at rulings. They call an official. Now you have one too.</p>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section>
+    <div class="container">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">Built Like a Real <em>Rules Official</em></h2>
+
+      <p>The Rules of Golf are complex because they have to be. Designed for every possible scenario across every possible course, the rulebook reads like a legal document.</p>
+      <p>Real rules officials simplify that complexity by asking the right questions in the right order until the correct ruling emerges. The Rules Official works exactly the same way.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Select your situation</strong>
+            <p>Choose from guided decision trees covering the scenarios golfers actually face on the course.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Answer a few targeted questions</strong>
+            <p>The rules engine walks you through a precise sequence -- the same diagnostic process a trained official uses on the course.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Get the right call</strong>
+            <p>A clear ruling with the official rule citation. Share it with your group instantly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tap-play">
+        <div class="tap-word">Tap.</div>
+        <div class="tap-dot"></div>
+        <div class="tap-word">Answer.</div>
+        <div class="tap-dot"></div>
+        <div class="tap-word">Play.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ OFFLINE / ON-DEVICE ═══ -->
+  <section>
+    <div class="container">
+      <p class="section-eyebrow">Built for the Course</p>
+      <h2 class="section-title">Works Anywhere. <em>Even Offline.</em></h2>
+
+      <p>Golf courses don't always have signal. The Rules Official runs entirely on your device, so rulings are always available -- in the rough, on a cart path, or deep in the trees.</p>
+      <p>On supported devices, on-device AI lets you describe your situation in plain language and receive a ruling instantly. No cloud. No servers. Everything stays on your phone.</p>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section id="features">
+    <div class="container">
+      <p class="section-eyebrow">What's Inside</p>
+      <h2 class="section-title">Every Tool <em>You Need</em></h2>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="12"/><line x1="12" y1="12" x2="7" y2="17"/><line x1="12" y1="12" x2="17" y2="17"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg></div>
+          <strong>Guided Rulings</strong>
+          <p>Decision trees covering the situations you actually face on the course, not textbook examples.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><polyline points="9 11 11 13 15 9"/></svg></div>
+          <strong>Official Rules Logic</strong>
+          <p>Built directly from the Rules of Golf -- the same foundation every tour official works from.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+          <strong>100% Offline</strong>
+          <p>No signal, no problem. Every ruling runs on-device. Always ready.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 5 6 8c0 2.5 1.5 4.5 3.5 5.5C8 14 7 15.5 7 17c0 2.8 2.2 5 5 5s5-2.2 5-5c0-1.5-1-3-2.5-3.5C16.5 12.5 18 10.5 18 8c0-3-2.5-6-6-6z"/><circle cx="10" cy="9" r="1" fill="#4CAF6A" stroke="none"/><circle cx="14" cy="9" r="1" fill="#4CAF6A" stroke="none"/></svg></div>
+          <strong>On-Device AI</strong>
+          <p>Describe your situation in plain language on supported devices. Processing stays entirely on your phone.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+          <strong>Share Rulings</strong>
+          <p>Send any ruling to your playing partners in one tap. End the debate immediately.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1.5" fill="#4CAF6A" stroke="none"/><circle cx="4" cy="12" r="1.5" fill="#4CAF6A" stroke="none"/><circle cx="4" cy="18" r="1.5" fill="#4CAF6A" stroke="none"/></svg></div>
+          <strong>Step-by-Step Relief</strong>
+          <p>Clear procedures for drops, penalties, and free relief -- every step numbered and explained.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
+          <strong>Rule References</strong>
+          <p>Every ruling includes the exact rule citation, so you can verify or learn.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
+          <strong>Outdoor-Ready Design</strong>
+          <p>High-contrast interface built for sunlight, gloves, and one-handed use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRIVACY ═══ -->
+  <section>
+    <div class="container">
+      <p class="section-eyebrow">Privacy</p>
+      <h2 class="section-title">Your Data <em>Stays Yours</em></h2>
+
+      <p>The Rules Official collects no data. No accounts. No analytics. No tracking. Everything runs on your device and stays on your device.</p>
+
+      <div class="privacy-grid">
+        <div class="privacy-item">
+          <span class="privacy-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16.5" r="1.5"/></svg></span>
+          <strong>No Data Collection</strong>
+          <p>Zero personal data collected. Ever.</p>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="6" y1="8" x2="6" y2="12" stroke-dasharray="1 2"/><line x1="12" y1="7" x2="12" y2="13" stroke-dasharray="1 2"/><line x1="18" y1="9" x2="18" y2="11" stroke-dasharray="1 2"/></svg></span>
+          <strong>No Servers</strong>
+          <p>Nothing leaves your phone. No cloud, no API calls.</p>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="4" y1="20" x2="20" y2="4" stroke-width="2"/></svg></span>
+          <strong>No Tracking</strong>
+          <p>No analytics, no ads, no third-party SDKs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPETITIVE EDGE ═══ -->
+  <section>
+    <div class="container">
+      <p class="section-eyebrow">Your Edge</p>
+      <h2 class="section-title">Know Every Rule <em>You're Entitled To</em></h2>
+
+      <p>Knowing the rules isn't just about avoiding penalties. It's about taking every relief you're entitled to, finishing holes correctly under pressure, and never conceding a stroke you didn't have to lose.</p>
+      <p>The Rules Official gives your whole group the same confidence a tour caddie has when a ruling matters.</p>
+
+      <div class="pull-quote">
+        <p>The rules are not obstacles. For the player who knows them, they are advantages.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOUNDER ═══ -->
+  <section>
+    <div class="container">
+      <p class="section-eyebrow">Growing the Game</p>
+      <h2 class="section-title">Why I <em>Built This</em></h2>
+
+      <div class="founder-quote">
+        <blockquote>I've been an avid golfer since I was a kid. The rules of the game are one of the things that can disrupt the enjoyment of the sport we love -- especially in those pressure-filled moments when a ruling really matters. The combination of my love for the game and my love of technology inspired this vision: to do my part to grow the game by making the rules accessible, instant, and clear for every golfer on every course.</blockquote>
+        <div class="founder-sig">
+          <span class="sig-name">Trey Layton</span>
+          <span class="sig-line"></span>
+          <span class="sig-title">Creator, The Rules Official</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRICING ═══ -->
+  <section>
+    <div class="container">
+      <p class="section-eyebrow">Pricing</p>
+      <h2 class="section-title">Less Than a <em>Sleeve of Balls</em></h2>
+
+      <div class="pricing-card">
+        <div class="trial-badge">7-Day Free Trial</div>
+        <div class="price-amount">$19<sup>.99</sup></div>
+        <div class="price-period">per year</div>
+        <p class="price-context">Less than a sleeve of premium balls -- and worth it the first time a ruling goes your way.</p>
+        <a href="#" class="pricing-cta">Start Free Trial</a>
+        <div class="pricing-includes">
+          <span>All features included</span>
+          <span>Cancel anytime</span>
+          <span>Works on all iPhones</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER CLOSE ═══ -->
+  <div class="footer-close">
+    <p class="footer-quote">Know the rule.</p>
+    <p class="footer-answer">Play the shot.</p>
+  </div>
+
+  <!-- ═══ LEGAL FOOTER ═══ -->
+  <div class="footer-legal">
+    <p>
+      <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="terms.html">Terms of Service</a>
+    </p>
+    <p>The Rules Official is not affiliated with, endorsed by, or connected to the USGA, R&A, or any golf governing body. All rules content is original plain-language interpretation and does not reproduce copyrighted USGA text.</p>
+    <p>&copy; 2026 Centrifical, Inc. All rights reserved.<br>
+    "The Rules Official" is a trademark of Joseph W. Layton III. USPTO Serial No. 99690699.</p>
+  </div>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
